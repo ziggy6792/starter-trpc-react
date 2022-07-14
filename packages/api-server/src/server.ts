@@ -3,10 +3,7 @@ import * as trpcExpress from '@trpc/server/adapters/express';
 import cors from 'cors';
 import ws from 'ws';
 import { applyWSSHandler } from '@trpc/server/adapters/ws';
-import { closeConnection, setupConnection } from './services/cryptocompare-ws';
 import { appRouter } from './app-router';
-import { ee } from './utils/event-emiter';
-import { priceUpdateWsEventToPrice } from './utils/mapper-util';
 import { log } from './utils/logger';
 
 const apiPort = 4000;
@@ -52,17 +49,10 @@ export const setupServer = () => {
 
   log.info(`WebSocket Server listening on ws://localhost:${wsPort}`);
 
-  setupConnection({
-    onUpdatePrice: (data) => {
-      ee.emit('updatePrice', priceUpdateWsEventToPrice(data));
-    },
-  });
-
   process.on('SIGINT', () => {
     log.info('Got SIGINT. Press Control-C to exit.');
     handler.broadcastReconnectNotification();
     wss.close();
     expressServer.close();
-    closeConnection();
   });
 };
