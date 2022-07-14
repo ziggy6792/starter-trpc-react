@@ -1,0 +1,37 @@
+{
+  "name": "@gsg-code-assignment/api-server",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "run-p watch start:build",
+    "watch": "ttsc -w",
+    "start:build": "node-dev dist/index.js --no-notify",
+    "typecheck": "tsc --noEmit",
+    "build": "ttsc"
+  },
+  "main": "dist/index.js",
+  "dependencies": {
+    "@trpc/server": "^9.25.3",
+    "axios": "^0.27.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "loglevel": "^1.8.0",
+    "loglevel-plugin-prefix": "^0.8.4",
+    "npm-run-all": "^4.1.5",
+    "superjson": "^1.9.1",
+    "websocket": "^1.0.34",
+    "websocket-ts": "^1.1.1",
+    "ws": "^8.8.0",
+    "zod": "^3.17.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
+    "@types/websocket": "^1.0.5",
+    "node-dev": "^7.4.3",
+    "ttypescript": "^1.5.13",
+    "typescript": "^4.7.4",
+    "typescript-transform-paths": "^2.0.0"
+  }
+}
