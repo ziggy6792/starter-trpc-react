@@ -1,5 +1,5 @@
 {
-  "name": "@gsg-code-assignment/api-server",
+  "name": "@starter-trpc-react/api-server",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
