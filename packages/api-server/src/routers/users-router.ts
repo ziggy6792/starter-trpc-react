@@ -13,7 +13,7 @@ const users: IUser[] = [
   },
 ];
 
-export const historicalPriceRouter = createRouter().query('getHistoricalPrice', {
+export const usersRouter = createRouter().query('users', {
   // input: getHisoricalDataRequestValidator,
   async resolve() {
     return users;
