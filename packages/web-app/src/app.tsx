@@ -6,8 +6,12 @@ import ErrorWrapper from './error-wrapper';
 
 const client = new QueryClient();
 
+const defaultSearch = {
+  name: 'Simon',
+};
+
 const Users: React.FC = () => {
-  const { data: users } = trpc.useQuery(['users'], { suspense: true });
+  const { data: users } = trpc.useQuery(['searchUsers', defaultSearch], { suspense: true });
 
   return (
     <div>
