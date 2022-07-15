@@ -6,16 +6,22 @@ import { searchUsersValdidator } from 'src/validators';
 
 const users: IUser[] = [
   {
-    name: 'Simon Verhoeven',
+    firstName: 'Simon',
+    lastName: 'Verhoeven',
     age: 30,
+    dob: new Date(),
   },
   {
-    name: 'Simon Pegg',
+    firstName: 'Simon',
+    lastName: 'Pegg',
     age: 52,
+    dob: new Date(),
   },
   {
-    name: 'Ben Verhoeven',
+    firstName: 'Ben',
+    lastName: 'Verhoeven',
     age: 31,
+    dob: new Date(),
   },
 ];
 
@@ -32,8 +38,24 @@ export const usersRouter = createRouter()
         if (input.age) {
           if (input.age !== user.age) return false;
         }
-        if (input.name) {
-          if (!user.name?.toLowerCase().includes(input.name.toLowerCase())) return false;
+        if (input.lastName) {
+          if (!user.lastName?.toLowerCase().includes(input.lastName.toLowerCase())) return false;
+        }
+        return true;
+      });
+
+      return searchResults;
+    },
+  })
+  .query('helloWorld', {
+    input: searchUsersValdidator,
+    async resolve({ input }) {
+      const searchResults = _.filter(users, (user) => {
+        if (input.age) {
+          if (input.age !== user.age) return false;
+        }
+        if (input.lastName) {
+          if (!user.lastName?.toLowerCase().includes(input.lastName.toLowerCase())) return false;
         }
         return true;
       });

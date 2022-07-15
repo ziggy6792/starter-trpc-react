@@ -7,17 +7,18 @@ import ErrorWrapper from './error-wrapper';
 const client = new QueryClient();
 
 const defaultSearch = {
-  name: 'Simon',
+  lastName: 'ver',
 };
 
 const Users: React.FC = () => {
   const { data: users } = trpc.useQuery(['searchUsers', defaultSearch], { suspense: true });
+  // const { data: users } = trpc.useQuery(['helloWorld', defaultSearch], { suspense: true });
 
   return (
     <div>
-      {users?.map(({ name, age }) => (
+      {users?.map(({ lastName, age, dob }) => (
         <>
-          <div>Name: {name}</div> <div>Age: {age}</div>
+          <div>Name: {lastName}</div> <div>Age: {age}</div> <div>Age: {dob.toISOString()}</div>
         </>
       ))}
     </div>
